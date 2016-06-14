@@ -49,7 +49,7 @@ var promiseRequest = function (tagArgs) {
 
 };
 
-hexo.extend.helper.register('flickr_gallery', function(args, content){
+hexo.extend.tag.register('flickr_gallery', function(args, content){
   var params = args.slice(' ');
   var size = params[0];
   var imgs = params.slice(1);
