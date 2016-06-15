@@ -57,6 +57,7 @@ hexo.extend.tag.register('flickr_gallery', function(args, content){
     return promiseRequest([img, size]);
   })).then(function (imgAttrs) {
     //console.log('attrs', imgAttrs);
+    imgAttrs.class = 'flickr-image'
     var imgs = imgAttrs.map(function (imgAttr) {return hexoUtil.htmlTag('img', imgAttr)}).join('');
     return `<div class='flickr-gallery'>${imgs}</div>`;
   });
