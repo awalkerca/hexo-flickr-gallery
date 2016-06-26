@@ -62,3 +62,15 @@ hexo.extend.tag.register('flickr_gallery', function(args, content){
     return `<div class='flickr-gallery'>${imgs}</div>`;
   });
 }, {async: true});
+
+hexo.extend.helper.register('flickr_album', function (albumId) {
+  var id = albumId || '';
+  var attrs = {
+    href: `https://www.flickr.com/photos/awalkerca/sets/${id}`,
+    class: 'flickr-album',
+  };
+  var text = 'See Full Album';
+  
+  return htmlTag('a', attrs, text);
+
+});
