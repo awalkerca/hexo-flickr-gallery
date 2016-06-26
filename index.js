@@ -67,10 +67,17 @@ hexo.extend.helper.register('flickr_album', function (albumId) {
   var id = albumId || '';
   var attrs = {
     href: `https://www.flickr.com/photos/awalkerca/sets/${id}`,
-    class: 'flickr-album',
+    class: 'flickr-album-link',
   };
-  var text = 'See Full Album';
-  
-  return htmlTag('a', attrs, text);
+
+  var text = 'Check out the Album';
+  var icon = htmlTag('span', {
+    class: 'fa fa-camera album-icon',
+  });
+
+  var label = htmlTag('span', {
+    class: 'flickr-album-text'
+  }, text)
+  return htmlTag('a', attrs, label + icon);
 
 });
