@@ -4,8 +4,8 @@ var https = require('https');
 var Promise = require('bluebird');
 var hexoUtil = require('hexo-util');
 var tagUtil = require('./flickrTagUtil');
+var htmlTag = require('html-tag');
 var APIKey = hexo.config.flickr_api_key || false;
-
 
 /**
  * promise Flickr API request
