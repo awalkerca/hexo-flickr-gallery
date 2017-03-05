@@ -49,7 +49,7 @@ var promiseRequest = function (tagArgs) {
 
 };
 
-hexo.extend.helper.register('flickr_gallery', function(args, content){
+hexo.extend.tag.register('flickr_gallery', function(args, content){
   var params = args.slice(' ');
   var size = params[0];
   var imgs = params.slice(1);
@@ -57,7 +57,27 @@ hexo.extend.helper.register('flickr_gallery', function(args, content){
     return promiseRequest([img, size]);
   })).then(function (imgAttrs) {
     //console.log('attrs', imgAttrs);
+    imgAttrs.class = 'flickr-image'
     var imgs = imgAttrs.map(function (imgAttr) {return hexoUtil.htmlTag('img', imgAttr)}).join('');
     return `<div class='flickr-gallery'>${imgs}</div>`;
   });
 }, {async: true});
+
+hexo.extend.helper.register('flickr_album', function (albumId) {
+  var id = albumId || '';
+  var attrs = {
+    href: `https://www.flickr.com/photos/awalkerca/sets/${id}`,
+    class: 'flickr-album-link',
+  };
+
+  var text = 'Check out the Album';
+  var icon = htmlTag('span', {
+    class: 'fa fa-camera album-icon',
+  });
+
+  var label = htmlTag('span', {
+    class: 'flickr-album-text'
+  }, text)
+  return htmlTag('a', attrs, label + icon);
+
+});
